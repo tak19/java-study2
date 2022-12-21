@@ -19,8 +19,6 @@ public class GoodsApp {
 		
 		camera.setPrice(400000);
 		System.out.println(camera.calcDiscountPrice(0.5f));
-		
-
+	
 	}
-
 }
