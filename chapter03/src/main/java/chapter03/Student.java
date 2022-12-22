@@ -10,5 +10,9 @@ public class Student extends Person {
 		//super();
 		System.out.println("Student() called");
 	}
+	
+	public void Stest() {
+
+	}
 
 }
