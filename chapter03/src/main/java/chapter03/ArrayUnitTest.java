@@ -1,6 +1,9 @@
 package chapter03;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 public class ArrayUnitTest {
 
@@ -9,6 +12,10 @@ public class ArrayUnitTest {
 		//int[] a = new int[5];
 //		a[0] = 1;
 //		a[1] = 2;
+		
+		List list = null;
+		Stack s = null;
+		Queue q = null;
 		
 		double[] d = ArrayUtil.intToDouble(new int[] {10,20,30,40});
 		System.out.println(Arrays.toString(d));
