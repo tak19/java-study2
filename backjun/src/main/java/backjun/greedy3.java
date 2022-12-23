@@ -49,10 +49,16 @@ public class greedy3 {
 //					}
 //				}
 //			}
+			
+			StringBuilder sb = new StringBuilder();
+			//Arrays.sort 사용
 			Arrays.sort(c);
 			for(int i = c.length -1; i >= 0 ; i --) {
-				System.out.print(c[i]);
+				//System.out.print(c[i]);
+				sb.append(c[i]);
 			}
+			System.out.println(sb);
+			
 			
 			
 			
