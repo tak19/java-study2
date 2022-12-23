@@ -6,7 +6,7 @@ public class RectTriangle extends Shape {
 
 	
 	public RectTriangle(double width, double height) {
-		//super();
+		super();
 		this.width = width;
 		this.height = height;
 	}

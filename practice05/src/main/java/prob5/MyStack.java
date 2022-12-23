@@ -6,7 +6,7 @@ public class MyStack {
 	
 	private static String[] buffer; //요따가 스택 구현함
 	private int num;
-	
+		
 	public MyStack(int num) {
 		buffer = new String[num*2];
 		//System.out.println(buffer.length);
