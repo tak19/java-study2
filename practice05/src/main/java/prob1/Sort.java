@@ -4,7 +4,7 @@ public class Sort {
 	
 	public static void main(String[] arg) {
 	
-		int array[] = { 5, 9, 3, 8, 60, 20, 1 };
+		int array[] = { 5, 9, 8, 8, 60, 20, 1 };
 		//배열 크기
 		int count =  array.length;
 		
