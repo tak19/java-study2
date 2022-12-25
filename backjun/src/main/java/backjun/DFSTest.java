@@ -49,6 +49,7 @@ public class DFSTest {
 		}
 		//정렬된 리스트를 가지고 방문시작
 		dfs(list,visit,v,sb);
+		sb.append("\n");
 		
 		
 		System.out.println(sb);
@@ -68,7 +69,6 @@ public class DFSTest {
 			}
 
 		}
-		
 
 	}
 
