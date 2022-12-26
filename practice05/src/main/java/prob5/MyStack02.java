@@ -1,12 +1,13 @@
 package prob5;
 
-public class MyStack {
+public class MyStack02 {
 	//현재 스택이 들어가 있는 정보를 알기위해 static 변수를 활용할 거임!
 	static int index = 0;
-	private static String[] buffer; //요따가 스택 구현함
+	
+	private static Object[] buffer; //요따가 스택 구현함
 	private int num;
 		
-	public MyStack(int num) {
+	public MyStack02(int num) {
 		buffer = new String[num];
 		//System.out.println(buffer.length);
 	}
@@ -33,15 +34,16 @@ public class MyStack {
 
 	}
 
-	public String pop() {
+	public Object pop() {
 		//현재 index값에 pop 실행 시 +1 값이 들어가 있기때문에 전위로 -1 감소시킴
 		  if(index <= 0) {
 			  throw new MyStackException("stack is empty");
 		  }
 		return buffer[--index];
 	}
+	
 	public void resize() {
-		String[] temp = new String[buffer.length *2];
+		Object[] temp = new Object[buffer.length *2];
 		for(int i = 0 ; i < index ; i ++) {
 			temp[i] = buffer[i];
 		}
