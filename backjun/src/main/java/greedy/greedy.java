@@ -1,4 +1,4 @@
-package backjun;
+package greedy;
 
 import java.util.Scanner;
 import java.util.Stack;
