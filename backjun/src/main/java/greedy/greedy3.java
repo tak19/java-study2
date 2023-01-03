@@ -59,10 +59,6 @@ public class greedy3 {
 			}
 			System.out.println(sb);
 			
-			
-			
-			
-
 		}
 
 	}
