@@ -1,4 +1,4 @@
-package backjun;
+package bfs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
