@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class greedy3 {
+public class greedy03 {
 
 	public static void main(String[] args) {
 		//백준 10610 - 30
