@@ -58,7 +58,6 @@ public class greedy03 {
 				sb.append(c[i]);
 			}
 			System.out.println(sb);
-			
 		}
 
 	}
