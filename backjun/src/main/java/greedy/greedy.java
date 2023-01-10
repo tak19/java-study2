@@ -36,12 +36,7 @@ public class greedy {
 			
 		}
 		System.out.println(total);
-		//입력받은 문자열 char 배열로 변환
-		//char[] c = sc.nextLine().toCharArray();
-		
-		
-		
-		
+	
 	}
 
 }
