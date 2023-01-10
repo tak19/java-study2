@@ -2,7 +2,7 @@ package greedy;
 
 import java.util.Scanner;
 
-public class greedy9 {
+public class greedy09 {
 
 	public static void main(String[] args) {
 		//1부터 더하는데 더할 수보다 남은 수가 많으면 +1 임
