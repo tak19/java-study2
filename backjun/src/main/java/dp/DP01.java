@@ -2,7 +2,7 @@ package dp;
 
 import java.util.Scanner;
 
-public class DP {
+public class DP01 {
 	static long[] arr;
 
 	public static void main(String[] args) {

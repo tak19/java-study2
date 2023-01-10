@@ -2,7 +2,7 @@ package dp;
 
 import java.util.Scanner;
 
-public class DP2 {
+public class DP02 {
 	//총 경우의 수를 저장할 변수
 	//eclipse 스택 오류 but 
 	static long[] arr;
