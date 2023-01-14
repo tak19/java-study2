@@ -2,7 +2,7 @@ package bruteforce;
 
 import java.util.Scanner;
 
-public class bruteforce01 {
+public class bruteforce_01 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
