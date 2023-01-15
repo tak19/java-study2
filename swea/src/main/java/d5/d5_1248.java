@@ -33,8 +33,6 @@ public class d5_1248 {
                 n[i] = new node(i);
             }
 			
-			
-			//List<Integer> list[] = new ArrayList<Integer>()[v];
 			//간선 입력받음
 			for(int i = 0 ; i < e*2 ; i+=2) {
 				parent = Integer.parseInt(s[i]);
