@@ -46,7 +46,6 @@ public class etc_06 {
 			
 		}
 		System.out.println(total);
-		
 	}
 
 }
