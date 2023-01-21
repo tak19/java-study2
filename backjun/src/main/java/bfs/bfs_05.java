@@ -3,8 +3,6 @@ package bfs;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +32,7 @@ public class bfs_05 {
 			int y2 = Integer.parseInt(st.nextToken());
 			int x2 = Integer.parseInt(st.nextToken());
 			
-//			//좌표를 오름차순으로 정렬하자!
+//			//좌표를 오름차순으로 정렬하자! 문제에 왼,오 좌표를 명시해서 줌.. 굳이 필요없어서 주석처리
 //			if(x1 > x2) { //x1이 더 크다면 x1에 더 작은 값 할당
 //				int temp = x1;
 //				x1 = x2;
@@ -56,13 +54,11 @@ public class bfs_05 {
 		int area = 0;
 		int size=0;
 		
-		
 		List<Integer> list = new ArrayList<>();
 		for(int i = 0 ; i < M ; i++) {
 			for(int j = 0 ; j < N ; j++) {
 				//BFS시작
 				if(!arr[i][j]) {
-					//System.out.println("i: " + i +" j: " +  j);
 					size = 0;
 					area++; //지역 개수 증가 시켜줌
 					Queue<Pos> q = new LinkedList<>();
@@ -96,10 +92,6 @@ public class bfs_05 {
 			System.out.print(list.get(i) + " ");
 		}
 		
-		
-		
-		
-		
 	}
 	static class Pos{
 		int x;
@@ -116,20 +108,4 @@ public class bfs_05 {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
