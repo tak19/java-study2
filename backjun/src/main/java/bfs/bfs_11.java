@@ -37,7 +37,7 @@ public class bfs_11 {
 			Pos pos = q.poll();
 			int x = pos.x;
 			int y = pos.y;
-			//(n,m) 좌표에 도달 했다면
+			//(n,m) 좌표에 도달 했다면 거리 출력
 			if(x == n-1 && y == m-1) {
 				System.out.println(pos.dis);
 				return;
