@@ -53,8 +53,8 @@ public class bfs_11 {
 							visit[gox][goy][pos.wall] = true;
 						}
 
-					}else {	//다음이 벽이네 
-
+					}else {	 
+						//다음이 벽이라면
 						if( !visit[gox][goy][1] && pos.wall==0 ) {
 							q.add(new Pos(gox,goy,pos.dis+1,1));
 							visit[gox][goy][1] = true;
