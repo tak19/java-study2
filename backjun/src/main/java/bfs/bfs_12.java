@@ -106,6 +106,7 @@ public class bfs_12 {
 
 
 		}
+		//출구로 나갔다면 cnt 값은 변경되어 -1이 아닐것이다.
 		if( cnt == -1) {
 			System.out.println("IMPOSSIBLE");
 		}else {
