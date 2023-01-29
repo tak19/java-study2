@@ -59,7 +59,7 @@ public class bfs_16 {
 				return true;
 			}
 			
-			//제한된 말 따라하깁보다 적게 말을 따라했다면
+			//제한된 말 따라하기보다 적게 말을 따라했다면
 			if( hm+1 <= hMove -1 ) {
 				for(int i = 0; i < 8 ; i++) {
 					int gox = x + hx[i];
