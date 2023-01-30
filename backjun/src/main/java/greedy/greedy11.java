@@ -39,8 +39,8 @@ public class greedy11 {
 				
 				//구간별로 최대합을 계산해 나간다.
 				for(int i = 2; i < n ; i++) {
-					sum[0][i] = Math.max(sum[1][i-2],Math.max(sum[1][i-1], sum[0][i-2])) + arr[0][i];
-					sum[1][i] = Math.max(Math.max( sum[0][i-2], sum[1][i-2]), sum[0][i-1]) + arr[1][i]; 
+					sum[0][i] = Math.max(sum[1][i-1], sum[1][i-2]) + arr[0][i];
+					sum[1][i] = Math.max( sum[0][i-2],sum[0][i-1]) + arr[1][i]; 
 				}
 			}
 
