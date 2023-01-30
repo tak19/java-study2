@@ -18,7 +18,7 @@ public class greedy12 {
 			time[i][0] = Integer.parseInt(st.nextToken()); 
 			time[i][1] = Integer.parseInt(st.nextToken());
 		}
-
+		
 		Arrays.sort(time, (o1, o2) -> {
 			return o1[0]!=o2[0] ? o1[0]-o2[0] : o1[1]-o2[1]; // 첫번째 기준 오름차순 > 두번째 기준 오름차순
 		});
