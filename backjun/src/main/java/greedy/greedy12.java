@@ -22,7 +22,7 @@ public class greedy12 {
 		Arrays.sort(time, (o1, o2) -> {
 			return o1[0]!=o2[0] ? o1[0]-o2[0] : o1[1]-o2[1]; // 첫번째 기준 오름차순 > 두번째 기준 오름차순
 		});
-
+		
 		//우선순위 큐를 이용해서 작은 수가 우선순위를 가르치도록함
 		PriorityQueue<Integer> q = new PriorityQueue<>();
 		q.add(time[0][1]);
