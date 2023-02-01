@@ -20,6 +20,7 @@ public class DP05 {
 		if( n == 1 ) {
 			return lion[0] = 7;
 		}
+		//메모제이션
 		if( lion[n] != 0) {
 			return lion[n];
 		}
