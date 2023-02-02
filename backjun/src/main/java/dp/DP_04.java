@@ -27,6 +27,5 @@ public class DP_04 {
 		}
 		
 		System.out.println(arr[n-1][9] % 10007);
-		
 	}
 }
