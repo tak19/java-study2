@@ -1,10 +1,10 @@
-package greedy;
+package dp;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class greedy11 {
+public class DP_07 {
 	static int[][] arr;
 	static int[][] sum;
 	public static void main(String[] args) throws Exception{
