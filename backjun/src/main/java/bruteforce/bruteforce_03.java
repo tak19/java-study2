@@ -39,12 +39,12 @@ public class bruteforce_03 {
 
 	}
 
-	// 인덱스 안에 있는 값 중복 확인으로 같은 행에 놓였는지 판단.
+	// 인덱스 안에 있는 값 중복 확인으로 같은 열에 놓였는지 판단.
 	// 두 행과 열의 차이가 일치하면 대각선 상에 놓여있는 것이기 때문에 이를 이용해 판단
 	private static boolean backTraking(int queen) {
 		
 		for(int i = 0 ; i < queen ; i++) {
-			//같은 행에 퀸이 놓여졌는지 판단함-- 있으면 false 리턴해서 검색 x
+			//같은 열에 퀸이 놓여졌는지 판단함-- 있으면 false 리턴해서 검색 x
 			if(arr[i] == arr[queen]) {
 				return false;
 			}
