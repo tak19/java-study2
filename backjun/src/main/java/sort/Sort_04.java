@@ -51,9 +51,7 @@ public class Sort_04 {
 				k++;
 				index1++;
 			}else if( tem[index1] > tem[index2] ) { //index2 가 더 작은 경우로 버블 Sort상에서 swap 발생
-				//result += e - k ;
 				result += index2 - k ; // 해당 원소의 인덱스 값에서 현재 대입할 인덱스값을 빼준다. --> 이동횟수 
-				//result += 1 ;
 				arr[k] = tem[index2];
 				k++;
 				index2++;
