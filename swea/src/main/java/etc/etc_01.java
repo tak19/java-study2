@@ -1,11 +1,11 @@
-package pratice;
+package etc;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class swea_8_1 {
+public class etc_01 {
 	static int[][] arr; // 음식 전체 정보야!!
 	static int[] listA,listB; //각각 조합으로 뽑은 음식의 경우의 수가 들어감 -> 요기서 2개씩 뽑음 
 	static boolean[] visit;
@@ -20,11 +20,11 @@ public class swea_8_1 {
 		/*
 		 * 1. 입력파일 읽어 들이기
 		 */
-		System.setIn(new FileInputStream("res/sample_input.txt"));
+		//System.setIn(new FileInputStream("res/sample_input.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int T = Integer.parseInt(br.readLine());
-		for(int test_case = 1 ; test_case <= 10 ; test_case++) {
+		for(int test_case = 1 ; test_case <= T ; test_case++) {
 			sb.append("#" + test_case + " ");
 			n = Integer.parseInt(br.readLine());
 
@@ -37,7 +37,6 @@ public class swea_8_1 {
 					arr[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-
 			result = Integer.MAX_VALUE;
 
 			//음식수 만큼
@@ -51,7 +50,6 @@ public class swea_8_1 {
 			//뽑은 개수와 시작값
 			//A 음식을 조합으로 뽑음 --> 이거 뽑으면 자동으로 B 알수 있어!
 			combi(0,0);
-
 
 			sb.append(result).append("\n");
 		}
@@ -70,14 +68,13 @@ public class swea_8_1 {
 			//나머지 식재료로 B음식 세팅함
 			setListB();
 
-
 			Avisit = new boolean[n/2];
 			Bvisit = new boolean[n/2];
 			//각각 식재료 목록에서 2개 뽑아서 전체 합  -> calA랑 claB 로직은 똑같은데 배열값이 다름
 
+			//조합으로 합 구하기
 			for(int i = 0 ; i < listB.length ; i++ ) {
 				for(int j = 0 ; j < listB.length ; j++ ) {
-			//		System.out.println("합구하자");
 					Bsum += arr[ listB[i] ][ listB[j] ];
 					Asum += arr[ listA[i] ][ listA[j] ];
 				}
