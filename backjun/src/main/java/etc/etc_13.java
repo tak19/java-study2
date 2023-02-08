@@ -1,10 +1,10 @@
-package com.ssafy.daily03;
+package etc;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class tee_01 {
+public class etc_13 {
 	private static StringBuilder sb = new StringBuilder();
 	static int n,m;
 	static int[] arr;
@@ -25,12 +25,6 @@ public class tee_01 {
 		input= new int[m];
 		// 현재 뽑은수와 시작 수를 매개변수로 넘겨줌
 		fun(0,1);
-		
-//		for(int i = 0 ; i < m ; i++) {
-//			input[i] = i+1;
-//		}
-//		
-//		combination(0,0);
 		
 		
 		System.out.println(sb);
