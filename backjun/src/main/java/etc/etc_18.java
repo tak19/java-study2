@@ -32,7 +32,7 @@ public class etc_18 {
 		//재료 선택 부분집합
 		subsetS(0);
 		System.out.println(result);
-
+ 
 	}
 	//신맛은 곱, 쓴맛은 합
 	private static void subsetS(int cnt) {
