@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class ect_18 {
+public class etc_18 {
 	private static StringBuilder sb = new StringBuilder();
 	static int n, result;
 	static int[] dan,sin;
