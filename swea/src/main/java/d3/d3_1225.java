@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class etc_03 {
+public class d3_1225 {
 private static StringBuilder sb = new StringBuilder();
 //SWEA 암호생성기
 public static void main(String[] args) throws Exception {
