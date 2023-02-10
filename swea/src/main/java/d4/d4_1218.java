@@ -1,11 +1,11 @@
-package needClean;
+package d4;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class etc_02 {
+public class d4_1218 {
 private static StringBuilder sb = new StringBuilder();
 //swea 괄호 짝짓기
 public static void main(String[] args) throws Exception {
