@@ -1,4 +1,4 @@
-package needClean;
+package datastructure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class etc_02 {
+public class datastructure_01 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -40,11 +40,7 @@ public class etc_02 {
 		}
 		sb.append(yo.poll());
 		System.out.println(sb.append(">"));
-		
-		
-		
-		
-		
+
 	}
 	
 	
