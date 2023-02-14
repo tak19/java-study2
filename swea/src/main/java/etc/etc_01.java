@@ -15,7 +15,7 @@ public class etc_01 {
 	static int Asum,Bsum; // 한 턴당 음식 시너지 합 --> 요기서 뽑은 음식 시너지로 차를 구한는거야 
 	static int n;
 	private static StringBuilder sb = new StringBuilder();
-
+ 
 	public static void main(String[] args) throws Exception {
 		/*
 		 * 1. 입력파일 읽어 들이기
