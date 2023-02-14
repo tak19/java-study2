@@ -8,81 +8,75 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class etc_03 {
-	static int[] arr;
-	static int len,size;
-	static Character[] c;
-	static char[] output;
-	static boolean[] isSelect;
-	
+	static int[] arr,oper,out; //숫자입력, 연산자 수, 연산자 사용
+	static int len; //숫자 길이
+	static int max,min;
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
-		
+
 		int T = Integer.parseInt(br.readLine());
-		for(int test = 1 ; test <= 1 ; test++) {
+		for(int test = 1 ; test <= T ; test++) {
 			sb.append("#").append(test).append(" ");
 			//숫자 길이
 			len = Integer.parseInt(br.readLine());
 			st = new StringTokenizer(br.readLine()); //부호 입력 받음
-			
-			List<Character> list = new ArrayList<>();
-			int plus = Integer.parseInt(st.nextToken());
-			int sub = Integer.parseInt(st.nextToken());
-			int mul = Integer.parseInt(st.nextToken());
-			int div = Integer.parseInt(st.nextToken());
-			//+
-			for(int i = 0; i < plus; i++) {
-				list.add('+');
+			//연산자 입력받음
+			oper = new int[4];
+			for(int i = 0 ; i < 4 ; i++) {
+				oper[i] = Integer.parseInt(st.nextToken());
 			}
-			//-
-			for(int i = 0; i < sub; i++) {
-				list.add('-');
-			}
-			//*
-			for(int i = 0; i < mul ; i++) {
-				list.add('*');
-			}
-			///
-			for(int i = 0; i < div ; i++) {
-				list.add('/');
-			}
-			
-			c = list.toArray(new Character[0]);
-			size = c.length;
 			//숫자 입력받음
 			st = new StringTokenizer(br.readLine()); 
 			arr = new int[len];
 			for(int i = 0 ; i < len ; i++) {
 				arr[i] = Integer.parseInt(st.nextToken());
 			}
-			
-			output = new char[size];
-			isSelect = new boolean[size];
-			pumul(0);
-			
-			
-		}
-		
-	}
 
-	private static void pumul(int cnt) {
-		if( cnt == size ) {
-			System.out.println(Arrays.toString(output));
+			max = Integer.MIN_VALUE;
+			min = Integer.MAX_VALUE;
+			out = new int[len-1];
+			makePer(0);
+
+			sb.append(max - min).append("\n");
+
+		}
+		System.out.println(sb);
+
+	}
+	//뽑은 횟수와 배열
+	private static void makePer(int cnt) {
+		if( cnt == len -1) {
+			int result = arr[0];
+			//System.out.println(Arrays.toString(output));
+			for(int i = 0 ; i < len -1 ; i++) {
+				if( out[i] == 0 ) {
+					result = result + arr[i+1]; 
+				}else if( out[i] == 1 ) {
+					result = result - arr[i+1];
+				}else if(  out[i] == 2  ) {
+					result = result * arr[i+1];
+				}else if(  out[i] == 3  ) {
+					result = result / arr[i+1];
+				}
+			}
+			min = Math.min(min, result);
+			max = Math.max(max, result);
+
 			return;
 		}
-		for(int i = 0 ; i < size ; i++) {
-			if( isSelect[i] ) {
-				continue;
+		for(int i = 0 ; i < 4 ; i++) {
+			if(oper[i] > 0) { //사용안한 연산자가 있는지 확인
+				oper[i]--; //해당 연산자 사용후 감소
+				out[cnt] = i; //해당 자리에 사용 연산자 대입
+				makePer(cnt+1);
+				oper[i]++;
 			}
-			output[cnt] = c[i]; //i번쨰에 해당하는 값을 집어넣음
-			isSelect[i] = true; //뽑은 숫자 체크
-			pumul(cnt + 1); //다음 숫자 뽑으러 가기
-			isSelect[i] = false; //리턴하고 돌아 왔을 때 뽑지 않은 상태로 되돌림	
 		}
-		
-		
-		
+
 	}
+
 }
 
