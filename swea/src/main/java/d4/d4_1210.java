@@ -1,16 +1,22 @@
 package d4;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class d4_1210 {
-	static int[] dx = { 0, 0, 1};
+	//BFS좌표
+//	static int[] dx = { 0, 0, 1};
+//	static int[] dy = { 1, -1, 0};
+	//BFS 좌표
+	static int[] dx = { 0, 0, -1};
 	static int[] dy = { 1, -1, 0};
 	static int[][] map = new int[100][100]; //지도
 	static boolean[][] visit;
 	static boolean ck;
+	static Queue<Pos> q = new ArrayDeque<>();
 
 	private static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws Exception {
@@ -33,12 +39,50 @@ public class d4_1210 {
 				st = new StringTokenizer(br.readLine());
 				for(int j = 0 ; j < 100 ; j++) {
 					map[i][j] = Integer.parseInt(st.nextToken());
+					if( map[i][j] == 2) {
+						q.add(new Pos(i,j));
+					}
 				}
 			}
-			start();
+			
+			bfs();
+			//start(); //DFS풀이
 		}
 		System.out.println(sb);
 
+	}
+
+	private static void bfs() {
+		visit = new boolean[100][100];
+		while( !q.isEmpty() ) {
+			Pos pos = q.poll();
+			int x = pos.x;
+			int y = pos.y;
+			visit[x][y] = true;
+			if( x == 0) {
+				sb.append(y).append("\n");
+				q.clear();
+				break;
+			}
+			//좌-우-상
+			for(int i = 0 ; i < 3 ; i++) {
+				int gox = x + dx[i];
+				int goy = y + dy[i];
+				
+				if( gox >= 0 && gox < 100 && goy >= 0 && goy < 100) { //범위안이라면
+					if( !visit[gox][goy] && map[gox][goy] != 0) { //방문하지 않았다면
+						q.add(new Pos(gox,goy));
+						break;
+					}
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		
 	}
 
 	//사다리 출발점 찾기
@@ -86,5 +130,13 @@ public class d4_1210 {
 
 		}
 
+	}
+	static class Pos{
+		int x;
+		int y;
+		Pos(int x, int y){
+			this.x = x;
+			this.y = y;
+		}
 	}
 }
