@@ -17,7 +17,7 @@ public class d4_1210 {
 		/*
 		 * 1. 입력파일 읽어 들이기
 		 */
-		System.setIn(new FileInputStream("res/input.txt"));
+		//System.setIn(new FileInputStream("res/input.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 
@@ -49,7 +49,7 @@ public class d4_1210 {
 				ck = false;
 				visit = new boolean[100][100];
 
-				bfs(0,j);
+				dfs(0,j);
 				if( ck ) {
 					sb.append(j + "\n");
 					break; 
@@ -58,7 +58,7 @@ public class d4_1210 {
 		}
 	}
 
-	private static void bfs(int x, int y) {
+	private static void dfs(int x, int y) {
 		if(visit[x][y]) {
 			return;
 		}else {
@@ -72,15 +72,15 @@ public class d4_1210 {
 
 			if( dy[0] + y < 100 && map[x][ dy[0] + y] != 0 && !visit[x][dy[0] + y]  ) {
 
-				bfs( x , dy[0] + y ); //오른쪽
+				dfs( x , dy[0] + y ); //오른쪽
 
 			}else if( dy[1] + y >= 0  &&  map[x][  dy[1] + y ] != 0 && !visit[x][dy[1] + y]  ) {
 
-				bfs( x , dy[1] + y ); // 왼쪽
+				dfs( x , dy[1] + y ); // 왼쪽
 
 			}else if(  x + dx[2] < 100 && map[x + dx[2]][y] != 0 && !visit[x + dx[2]][ y] ) {
 
-				bfs( x + dx[2] , y ); //아래로
+				dfs( x + dx[2] , y ); //아래로
 			}
 
 
