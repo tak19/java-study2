@@ -13,7 +13,7 @@ public class combination_03 {
 	static int ckAll,homeAll;
 	static int[][] map;
 	static Pos[] p, home, comP;
-
+ 
 	public static void main(String[] args) throws Exception{
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
