@@ -35,16 +35,20 @@ public class d2_14510 {
 			//가장 높은 나무에서 모든 나무의 길이를 뺀다
 			for(int i = 0 ; i < n-1; i++) {
 				sub = arr[n-1] - arr[i];
-				two += sub / 2;
 				one += sub % 2;
+				two += sub / 2;
 			}
 			int temp = Math.max(two - one, 0) / 3;
+			one += temp * 2;
+			two -= temp;
+			int Min = Math.min(one,two);
+			int result = Min * 2 + Math.max( (one - Min) * 2 -1, 0) + (two - Min) / 2 * 3 + (two - Min) % 2 *2;
 			
 			
 			
 			
 			
-			sb.append().append("\n");
+			sb.append(result).append("\n");
 			
 		}
 
