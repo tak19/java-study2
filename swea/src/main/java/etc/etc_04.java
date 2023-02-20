@@ -1,5 +1,4 @@
 package etc;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -30,7 +29,7 @@ public class etc_04 {
 
 			map = new int[n][m];
 			//시작 위치 입력받음
-			q.add(new Pos( Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()) )  );
+			q.add(new Pos( Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())) );
 			time = Integer.parseInt(st.nextToken());
 			//지도 입력받기
 			for(int i = 0 ; i < n ; i++) {
@@ -40,7 +39,8 @@ public class etc_04 {
 				}
 			}
 			visit = new boolean[n][m];
-			bfs();
+			visit[q.peek().x][q.peek().y] = true; //1시간 갈때를 대비해 true 처리해둠
+			bfs(); //탐색 시작
 
 			int result = 0;
 			for(int i = 0 ; i < n ; i++) {
@@ -58,7 +58,7 @@ public class etc_04 {
 
 	}
 	private static void bfs() {
-		int now = 0; //현재 시간
+		int now = 1; //현재 시간 - 시작전에 큐에 넣었기 때문에 1부터 시작
 
 		while( now < time ) {
 			int size = q.size(); //현재 횟수만큼 반복하기위해 --> for문에 넣으면 안됨!
@@ -67,7 +67,6 @@ public class etc_04 {
 				Pos pos = q.poll(); //시작점
 				int x = pos.x;
 				int y = pos.y;
-
 				visit[x][y] = true;
 
 				run(x,y);
@@ -118,7 +117,7 @@ public class etc_04 {
 			if( canGo(gox,goy) && map[gox][goy] != 0) {
 				//파이프가 연결되었는지 확인 후 보냄
 				if( !visit[gox][goy] && connect(i,gox,goy) ) {//방문 x + 연결되어있나?
-					//visit[gox][goy] = true;
+					visit[gox][goy] = true; //중복 방문을 예방하기 위해 미리 방문처리
 					q.add(new Pos(gox, goy));
 				}
 			}
