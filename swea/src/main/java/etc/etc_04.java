@@ -50,13 +50,6 @@ public class etc_04 {
 					}
 				}
 			}
-
-			for(int i = 0 ; i < n ; i++) {
-				for(int j = 0 ; j < m ; j++) {
-					System.out.print(visit[i][j]+ "\t");
-				}
-				System.out.println();
-			}
 			sb.append(result).append("\n");
 			q.clear();
 
@@ -125,7 +118,7 @@ public class etc_04 {
 			if( canGo(gox,goy) && map[gox][goy] != 0) {
 				//파이프가 연결되었는지 확인 후 보냄
 				if( !visit[gox][goy] && connect(i,gox,goy) ) {//방문 x + 연결되어있나?
-					visit[gox][goy] = true;
+					//visit[gox][goy] = true;
 					q.add(new Pos(gox, goy));
 				}
 			}
@@ -157,8 +150,6 @@ public class etc_04 {
 			break;
 		}
 		}
-
-
 		return false;
 	}
 	//범위만 확인함
@@ -177,10 +168,3 @@ public class etc_04 {
 		}
 	}
 }
-/*
- * 상 ---> 1,2,5,6
-하 ---> 1,2,4,7
-좌 ---> 1,3,4,5
-우 -->  1,3,6,7
- */
-
