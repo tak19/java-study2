@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class sort_07 {
+public class Sort_07 {
 	public static void main(String[] args) throws Exception
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
