@@ -21,13 +21,13 @@ public class etc_04 {
 		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
 		for(int test = 1 ; test <= T ; test++) {
-			
+
 			sb.append("#").append(test).append(" ");
 
 			st = new StringTokenizer(br.readLine());
 			n = Integer.parseInt(st.nextToken());
 			m = Integer.parseInt(st.nextToken());
-			
+
 			map = new int[n][m];
 			//시작 위치 입력받음
 			q.add(new Pos( Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()) )  );
@@ -41,7 +41,7 @@ public class etc_04 {
 			}
 			visit = new boolean[n][m];
 			bfs();
-			
+
 			int result = 0;
 			for(int i = 0 ; i < n ; i++) {
 				for(int j = 0 ; j < m ; j++) {
@@ -50,7 +50,15 @@ public class etc_04 {
 					}
 				}
 			}
+
+			for(int i = 0 ; i < n ; i++) {
+				for(int j = 0 ; j < m ; j++) {
+					System.out.print(visit[i][j]+ "\t");
+				}
+				System.out.println();
+			}
 			sb.append(result).append("\n");
+			q.clear();
 
 		}
 		System.out.println(sb);
@@ -66,7 +74,9 @@ public class etc_04 {
 				Pos pos = q.poll(); //시작점
 				int x = pos.x;
 				int y = pos.y;
+
 				visit[x][y] = true;
+
 				run(x,y);
 
 			}
@@ -98,6 +108,8 @@ public class etc_04 {
 			break;
 		}case 7: { //상좌 이동가능
 			move(0,3,x,y,2);
+			break;
+		}case 0:{
 			break;
 		}
 
