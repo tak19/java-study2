@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
+//게리맨더링
 public class etc_02 {
 	private static StringBuilder sb = new StringBuilder();
 	static boolean isSelect;
