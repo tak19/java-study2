@@ -59,16 +59,6 @@ public class d4_7465 {
 		
 	}
 	
-	private static void dfsA(int a, boolean[] bs) {
-		bs[a] = true;
-		for(Node temp = node[a].node ; temp != null ; temp = temp.node) {
-			int current = temp.v;
-			if( !bs[current] && visit[current-1] ) { //방문이력이,없으면서 A지역구인곳만 방문함
-				dfsA(current,bs);
-			}	
-		}
-	}
-	
 	//열결관계
 	static class Node{
 		int v;
