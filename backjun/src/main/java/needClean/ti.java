@@ -2,20 +2,12 @@ package needClean;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class ti {
-	static int[] dx = {0,0,-1,1};
-	static int[] dy = {1,-1,0,0};
-	static int[][] map;
-	static boolean[][] visit;
-	static int n,m,k;
-	static Queue<Pos> q;
-	static PriorityQueue<Pos> pq;
-	
+	static int n,m;
+	static Node[] node;
+	static boolean[] visit;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
@@ -23,87 +15,73 @@ public class ti {
 		StringTokenizer st;
 		for(int test = 1 ; test <= T ; test++) {
 			sb.append("#").append(test).append(" ");
-
+			
 			st = new StringTokenizer(br.readLine());
-			n = Integer.parseInt(st.nextToken()); // Row
-			m = Integer.parseInt(st.nextToken()); // Col
-			k = Integer.parseInt(st.nextToken()); // Cnt
-			
-			int center = 175 - (Math.max(n, m) / 2) ; //중앙 인덱스
-			// 생명 주기가 큰 순서부터 뺌
-			pq = new PriorityQueue<Pos>( (o1,o2) -> {
-				return o2.origin - o1.origin;
-			});
-			q = new ArrayDeque<>();
-			
-			//지도 입력받기
-			map = new int[351][351]; //n,m의 최대 크기가 50이기 때문
-			visit = new boolean[351][351]; //n,m의 최대 크기가 50이기 때문
-			for(int i = center ; i < center + n ; i++) {
+			n = Integer.parseInt(st.nextToken()); // 사람 수
+			m = Integer.parseInt(st.nextToken()); // 관계 수
+
+			node = new Node[n+1]; //인덱스 번호를 그대로 사용하기 위함
+			//관계 입력받는다!
+			for(int i = 0 ; i < m ; i++) {
 				st = new StringTokenizer(br.readLine());
-				for(int j = center ; j < center + m ; j++) {
-					int num = Integer.parseInt(st.nextToken());
-					if( num != 0 ) { //세포가 있다면
-						map[i][j] = num;
-						pq.offer(new Pos(i,j,num,num*2));
-						visit[i][j] = true;
-					}
+				// 서로 알고 있는 사람 입력 받았쥬~
+				int peo1 = Integer.parseInt(st.nextToken());
+				int peo2 = Integer.parseInt(st.nextToken());
+				// 서로 알고 있는 사이이기 때문에 양방향으로다가 빡
+				node[peo1] = new Node(peo2,node[peo1]);
+				node[peo2] = new Node(peo1,node[peo2]);
+			}
+
+			int result = 0; //관계수 저장해유
+			//관계수 파악하자
+			visit = new boolean[n+1];
+			for(int i = 1 ; i <= n ; i++) {
+				if( !visit[i] ) { //방문 x 라면
+					result++;
+					dfs(i);
 				}
 			}
-			bfs();
-			sb.append(pq.size()).append("\n");
-
+			sb.append(result).append("\n");
 		}
 		System.out.println(sb);
 
 	}
-	private static void bfs() {
+	//관계 파악해
+	private static void dfs(int i) {
+		visit[i] = true; //방문처리해유
+		for( Node tem = node[i] ; tem != null ; tem = tem.node ) {
+			int cur = tem.v;
+			if( !visit[cur] ) {
+				dfs(cur);
+			}
+		}
 		
-		for(int cnt = 0 ; cnt < k ; cnt++) {
-			//모든 세포 한번씩 돌리기
-			while( !pq.isEmpty() ) {
-				Pos pos = pq.poll();
-				pos.cur -= 1; //한주기 돌면 -1
-				//cur을 2배로 잡아서 origin이 더 커지면 활성화된다.. (-1씩 감소했기 때문)
-				if( pos.origin > pos.cur ) {
-					for(int i = 0 ; i < 4 ; i++) {
-						int gox = pos.x + dx[i];
-						int goy = pos.y + dy[i];
-						//갈수 있나염?
-						if( canGo(gox,goy) ) {
-							if( !visit[gox][goy] ) { //방문한적이 없나염?
-								visit[gox][goy] = true;
-								q.add(new Pos(gox,goy,pos.origin,pos.origin*2)); //cur은 값이 변하기 때문에 origin으로
-							}
-						}
-					}
-				}
-				if( pos.cur != 0 ) { //죽은세포가 아니라면
-					q.add(new Pos(pos.x,pos.y,pos.origin,pos.cur));
-				}
-				
-			}
-			while( !q.isEmpty() ) { //활성 & 비활성 세포 옮기기
-				pq.offer(q.poll());
-			}
+		
+	}
+	
+	private static void dfsA(int a, boolean[] bs) {
+		bs[a] = true;
+		for(Node temp = node[a].node ; temp != null ; temp = temp.node) {
+			int current = temp.v;
+			if( !bs[current] && visit[current-1] ) { //방문이력이,없으면서 A지역구인곳만 방문함
+				dfsA(current,bs);
+			}	
 		}
 	}
 	
-	//범위 안에 있는지 판단한다요
-	private static boolean canGo(int gox, int goy) {
-		if( gox >= 0 && gox < 351 && goy >= 0 && goy < 351) {
-			return true;
+	//열결관계
+	static class Node{
+		int v;
+		Node node;
+		
+		public Node(int v, Node node) {
+			this.v = v;
+			this.node = node;
 		}
-		return false;
-	}
-	static class Pos{
-		int x,y,cur,origin;
 
-		public Pos(int x, int y, int origin, int cur) {
-			this.x = x;
-			this.y = y;
-			this.cur = cur;
-			this.origin = origin;
+		@Override
+		public String toString() {
+			return "Node [v=" + v + ", node=" + node + "]";
 		}
 		
 	}
