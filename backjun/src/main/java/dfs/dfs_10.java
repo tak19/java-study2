@@ -136,7 +136,7 @@ public class dfs_10 {
 	private static void dfsA(int a, boolean[] bs) {
 		devideA++;
 		bs[a] = true;
-		for(Node temp = list[a].node ; temp != null ; temp = temp.node) {
+		for(Node temp = list[a] ; temp != null ; temp = temp.node) {
 			int current = temp.near;
 			if( !bs[current] && visit[current-1] ) { //방문이력이,없으면서 A지역구인곳만 방문함
 				dfsA(current,bs);
@@ -146,7 +146,7 @@ public class dfs_10 {
 	private static void dfsB(int a, boolean[] bs) {
 		devideB++;
 		bs[a] = true;
-		for(Node temp = list[a].node ; temp != null ; temp = temp.node) {
+		for(Node temp = list[a] ; temp != null ; temp = temp.node) {
 			int current = temp.near;
 			if( !bs[current] && !visit[current-1] ) { //방문이력이,없으면서 B지역구인곳만 방문함
 				dfsB(current,bs);
