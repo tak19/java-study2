@@ -2,87 +2,155 @@ package needClean;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class ti {
-	static int n,m;
-	static Node[] node;
-	static boolean[] visit;
+	//좌상우하 순
+	static int[] dx = {0,1,0,-1};
+	static int[] dy = {1,0,-1,0};
+	static int n,m,limit,result;
+	static int[] output;
+	static int[][] map,origin;
+	static boolean[][] visit;
+	static List<Pos> list;
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
 		StringBuilder sb = new StringBuilder();
-		StringTokenizer st;
-		for(int test = 1 ; test <= T ; test++) {
-			sb.append("#").append(test).append(" ");
-			
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		list = new ArrayList<>();
+		
+		origin = new int[n][m];
+		int size = 0;
+		//cctc 정보 입력
+		for(int i = 0 ; i < n ; i++) {
 			st = new StringTokenizer(br.readLine());
-			n = Integer.parseInt(st.nextToken()); // 사람 수
-			m = Integer.parseInt(st.nextToken()); // 관계 수
-
-			node = new Node[n+1]; //인덱스 번호를 그대로 사용하기 위함
-			//관계 입력받는다!
-			for(int i = 0 ; i < m ; i++) {
-				st = new StringTokenizer(br.readLine());
-				// 서로 알고 있는 사람 입력 받았쥬~
-				int peo1 = Integer.parseInt(st.nextToken());
-				int peo2 = Integer.parseInt(st.nextToken());
-				// 서로 알고 있는 사이이기 때문에 양방향으로다가 빡
-				node[peo1] = new Node(peo2,node[peo1]);
-				node[peo2] = new Node(peo1,node[peo2]);
-			}
-
-			int result = 0; //관계수 저장해유
-			//관계수 파악하자
-			visit = new boolean[n+1];
-			for(int i = 1 ; i <= n ; i++) {
-				if( !visit[i] ) { //방문 x 라면
-					result++;
-					dfs(i);
+			for(int j = 0 ; j < m ; j++) {
+				origin[i][j] = Integer.parseInt(st.nextToken());
+				if (origin[i][j] != 0 && origin[i][j] != 6) {
+					list.add(new Pos(i,j,origin[i][j]));
 				}
 			}
-			sb.append(result).append("\n");
 		}
-		System.out.println(sb);
+
+		//CCTV 개수 저장
+		output = new int[list.size()];
+		result = Integer.MAX_VALUE;
+		pec(0);
+		System.out.println(result);
+		//System.out.println(sb);
 
 	}
-	//관계 파악해
-	private static void dfs(int i) {
-		visit[i] = true; //방문처리해유
-		for( Node tem = node[i] ; tem != null ; tem = tem.node ) {
-			int cur = tem.v;
-			if( !visit[cur] ) {
-				dfs(cur);
+	
+	private static void pec(int cnt) {
+		if(cnt == list.size()) {
+			map = new int[n][m];
+			copyArray();
+			visit = new boolean[n][m];
+			
+			for(int i = 0 ; i < list.size() ; i++) {
+				
+				Pos pos = list.get(i);
+				//dir-> cctv 종류
+				switch (pos.dir) {
+				case 1: {//한쪽
+					dfs(pos.x, pos.y, output[i]);
+					break;
+				}case 2: { //양쪽
+					dfs(pos.x, pos.y, output[i]);
+					dfs(pos.x, pos.y, output[i]+2);
+					break;
+				}case 3: {//90도로
+					dfs(pos.x, pos.y, output[i]);
+					dfs(pos.x, pos.y, output[i]+1);
+					break;
+				}case 4: {//3방향
+					dfs(pos.x, pos.y, output[i]);
+					dfs(pos.x, pos.y, output[i]+1);
+					dfs(pos.x, pos.y, output[i]+2);
+					break;
+				}case 5: {//4방
+					dfs(pos.x, pos.y, output[i]);
+					dfs(pos.x, pos.y, output[i]+1);
+					dfs(pos.x, pos.y, output[i]+2);
+					dfs(pos.x, pos.y, output[i]+3);
+					break;
+				}
+
+				}
+				
+			}
+			int sum = 0;
+			for(int i = 0 ; i < n ; i++) {
+				for(int j = 0 ; j < m ; j++) {
+					if( map[i][j] == 0 && !visit[i][j]) {
+						sum++;
+					}
+				}
+			}
+			result = Math.min(result, sum);
+
+			return;
+		}
+
+		for(int i = 0 ; i < 4 ; i++) {
+			output[cnt] = i;
+			pec(cnt+1);
+		}
+
+	}
+	//탐색해유~
+	private static void dfs(int x, int y, int dir) {
+		dir %= 4;
+		//이동할 방향
+		int gox = x + dx[dir];
+		int goy = y + dy[dir];
+		//이동 범위 안이라면
+		if (canGo(gox,goy)) {
+			if(map[gox][goy] == 0 && !visit[gox][goy]) {
+				visit[gox][goy] = true;
+				dfs(gox,goy,dir);
+			}else if( map[gox][goy]  >= 1 && map[gox][goy] <= 5 || visit[gox][goy] ){
+				dfs(gox,goy,dir);
 			}
 		}
 		
 		
 	}
-	
-	private static void dfsA(int a, boolean[] bs) {
-		bs[a] = true;
-		for(Node temp = node[a].node ; temp != null ; temp = temp.node) {
-			int current = temp.v;
-			if( !bs[current] && visit[current-1] ) { //방문이력이,없으면서 A지역구인곳만 방문함
-				dfsA(current,bs);
-			}	
+
+	//범위 안인지 확인
+	private static boolean canGo(int x, int y) {
+		if( x >= 0 && x < n && y >= 0 && y < m) {
+			return true;
+		}
+		return false;
+	}
+	//배열을 복사해
+	private static void copyArray() {
+		//좌표정보, 카메라 종류, 방향 입력함
+		for(int i = 0 ; i < n ; i++) {
+			for(int j = 0 ; j < m ; j++) {
+				map[i][j] = origin[i][j];
+			}
 		}
 	}
-	
-	//열결관계
-	static class Node{
-		int v;
-		Node node;
-		
-		public Node(int v, Node node) {
-			this.v = v;
-			this.node = node;
+	static class Pos{
+		int x,y;
+		int dir;
+
+		public Pos(int x, int y, int dir) {
+			this.x = x;
+			this.y = y;
+			this.dir = dir;
 		}
 
-		@Override
-		public String toString() {
-			return "Node [v=" + v + ", node=" + node + "]";
-		}
-		
 	}
 }
