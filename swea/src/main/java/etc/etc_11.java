@@ -59,10 +59,7 @@ public class etc_11 {
 			ck = false;
 			dfs(0,0);
 			sb.append(min).append("\n");
-
-			
-
-			
+	
 		}
 		System.out.println(sb);
 
