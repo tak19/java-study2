@@ -40,7 +40,7 @@ public class etc_11 {
 //			result = 0; //바꾼 자리 수다!
 			initMap();
 //
-//			//열을 뽑는 부분집합과 그안에서 순열을 통해 약품을 정함
+//			//풀이방식 1. 열을 뽑는 부분집합과 그안에서 순열을 통해 약품을 정함 - 1300ms
 //			if( !ck() ) {
 //				while( !ck() ) {
 //					result++;
@@ -54,7 +54,7 @@ public class etc_11 {
 //			}
 //			sb.append(result).append("\n");
 
-			//dfs 풀이방식
+			//풀이방식 2. dfs 풀이방식 - 400ms
 			min = Integer.MAX_VALUE;
 			ck = false;
 			dfs(0,0);
