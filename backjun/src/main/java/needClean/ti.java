@@ -8,9 +8,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-/*
- * 25크기의 배열 선언하고, 25C7 구해서 조건에 맞는지 판단 + 연결되어 있는지 확인 후 ++
- */
 public class ti {
 	//상하좌우
 	static int[] dx = {-1,1,0,0};
@@ -105,7 +102,7 @@ public class ti {
 						}
 					}
 				}
-				//다 봤는데도 갈 곳이 없다면 돌아가야해
+				//다 봤는데도 갈 곳이 없다면 돌아가야해 -자기 자신으로 돌아감
 				for (int j = 0; j < 4; j++) {
 					int realDir = s.priorityDir[s.dir][j];
 					int gox = s.x + dx[realDir];
@@ -119,7 +116,8 @@ public class ti {
 						queue.offer(s);
 						continue next;
 					}
-					if( j == 3 ) {
+					//아무곳도 갈 곳없다면 자기 자리 들어감
+					if( j == 3 ) { 
 						//s.dir = realDir;
 						queue.offer(s);
 						continue next;
