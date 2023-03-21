@@ -28,7 +28,6 @@ public class simul_12 {
 		realMap = new int[N][N]; //상어 종류 확인용(상어 인덱스가 저장)
 		numCk = new int[N][N]; //상어의 남아있는 냄새 K 확인용 - -1씩 감소
 		
-		int[][][] map = new int[N][N][2];
 		shark = new Shark[M+1];
 		for(int i = 0 ; i < N ; i++){
 			Arrays.fill(realMap[i], Integer.MAX_VALUE);
@@ -38,8 +37,6 @@ public class simul_12 {
 				//상어가 나타났다! ==> 좌표정보를 저장한다. + 현재 상어 번호
 				if( input != 0 ) {
 					shark[input] = new Shark(i, j, input);
-					//shark[input] = new Shark(i, j);
-					//numCk[i][j] = K;
 				}
 			}
 		}
