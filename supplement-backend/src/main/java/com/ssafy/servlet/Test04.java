@@ -19,11 +19,31 @@
  */
 package com.ssafy.servlet;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 @WebServlet("/servlet/test04")
 public class Test04 extends HttpServlet {
+
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		System.out.println("실제 작업 진행하는 메서드");
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("서블릿 객체 메모리 해제될때 호출");
+	}
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("최초 한번만 실행");
+	}
 	
 }
 
