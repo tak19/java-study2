@@ -9,8 +9,14 @@ import java.util.StringTokenizer;
 public class test2 {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		System.out.println((n*(n+1))/2);
+		int T = Integer.parseInt(br.readLine());
+		
+		StringBuilder sb = new StringBuilder();
+		while(T --> 0) {
+			String s = br.readLine();
+			sb.append(s.charAt(0)).append(s.charAt(s.length()-1)).append("\n");
+		}
+		System.out.println(sb);
 	}
 }
 
