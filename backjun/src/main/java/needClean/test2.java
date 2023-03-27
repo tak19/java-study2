@@ -13,7 +13,7 @@ public class test2 {
 		
 		StringBuilder sb = new StringBuilder();
 		while(T --> 0) {
-			String s = br.readLine();
+			String s = br.readLine(); 
 			sb.append(s.charAt(0)).append(s.charAt(s.length()-1)).append("\n");
 		}
 		System.out.println(sb);
