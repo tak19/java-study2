@@ -7,6 +7,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class test2 {
+<<<<<<< HEAD
 	//상하좌우
 	static int[] dx = {-1,1,0,0};
 	static int[] dy = {0,0,-1,1};
@@ -105,3 +106,21 @@ public class test2 {
 	}
 
 }
+=======
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+		
+		StringBuilder sb = new StringBuilder();
+		while(T --> 0) {
+			String s = br.readLine(); 
+			sb.append(s.charAt(0)).append(s.charAt(s.length()-1)).append("\n");
+		}
+		System.out.println(sb);
+	}
+}
+
+
+
+
+>>>>>>> 78f51c957f49ececf2e01eca270e5465397dfcea
