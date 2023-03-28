@@ -21,7 +21,7 @@ public class bfs_24 {
 		h = Integer.parseInt(st.nextToken()); // 높이
 		w = Integer.parseInt(st.nextToken()); // 넓이
 
-		//지도 입력 받기		
+		//지도 입력 받기
 		map = new int[h][w];
 		for(int i = 0 ; i < h ; i++){
 			st = new StringTokenizer(br.readLine());
