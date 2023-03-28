@@ -3,110 +3,187 @@ package needClean;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class test2 {
-	//상하좌우
-	static int[] dx = {-1,1,0,0};
-	static int[] dy = {0,0,-1,1};
-	static int h,w,cnt,result;
-	static boolean[][] visit;
-	static int[][] map,area; 
-
+	//우좌상하 순서
+	static int[] dx = {0,0,-1,1};
+	static int[] dy = {1,-1,0,0};
+	static int N,K,cnt;
+	static int[][] map;
+	static boolean ck;
+	static List<Integer> list; //겹쳐진 숫자를 판단할 리스트임
+	static Pos[] horse;
+	static Stack[][] stack;
+	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		h = Integer.parseInt(st.nextToken()); // 높이
-		w = Integer.parseInt(st.nextToken()); // 넓이
+		N = Integer.parseInt(st.nextToken()); // 체스판 크기
+		K = Integer.parseInt(st.nextToken()); // 말 개수
 
-		//지도 입력 받기		
-		map = new int[h][w];
-		for(int i = 0 ; i < h ; i++){
+		//체스판 입력 받기		
+		map = new int[N][N];
+		stack = new Stack[N][N];
+		for(int i = 0 ; i < N ; i++){
 			st = new StringTokenizer(br.readLine());
-			for(int j = 0 ; j < w ; j++){
+			for(int j = 0 ; j < N ; j++){
 				map[i][j] = Integer.parseInt(st.nextToken());
-				if( map[i][j] == 1) {
-					cnt++;
-				}
+				stack[i][j] = new Stack<Integer>();
 			}
 		}
-		//남은 치즈가 없을때까지 
-		while( cnt > 0 ) {
-			visit = new boolean[h][w];
-			area = new int[h][w];
-			melt();
-			removeCheese();
-			result++;
+		
+		
+		
+		//말의 정보를 입력 받는다! -> 행,열,이동방향 인덱스를 맞춰줌
+		horse = new Pos[K];
+		for(int i = 0 ; i < K ; i ++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken()) - 1;
+			int y = Integer.parseInt(st.nextToken()) - 1;
+			int dir = Integer.parseInt(st.nextToken()) - 1;
+			
+			horse[i] = new Pos(x,y,dir);
+			//스택에 말을 저장함
+			stack[x][y].add(i);
 		}
-		System.out.println(result);
+		//구현 메소드
+		letSimul();
+		System.out.println(cnt >= 1000 ? -1 : cnt);
 	}
-
-	//치즈 녹이깅
-	private static void removeCheese() {
-		for(int i = 0 ; i < h ; i++){
-			for(int j = 0 ; j < w ; j++){
-				//2개의 면 이상이 노출된 치즈가 있다면 녹이고, 남은 치즈개수 감소시킴
-				if( area[i][j] >= 2 ) {
-					map[i][j] = 0;
-					cnt--;
+	
+	//게임시작
+	private static void letSimul() {
+		cnt = 0;
+		while( cnt < 1000 ) {
+			cnt++;
+			//말 전체 이동이 한턴임
+			for(int i = 0 ; i < K ; i++) {
+				moveHorse(i);
+				if( ck ) {
+					break;
 				}
 			}
+			if( ck ) {
+				break;
+			}
+			
 		}
-
+		
 	}
-	//치즈가 맞닿으면 계산
-	private static void melt() {
-		visit[0][0] = true;
-		Queue<Pos> q = new ArrayDeque<>();
-		q.offer(new Pos(0,0));
-		//닿는 면적 계산함
-		while(!q.isEmpty()) {
-			Pos pos = q.poll();
-
-			for(int i = 0 ; i < 4 ; i ++) {
-				int gox = pos.x + dx[i];
-				int goy = pos.y + dy[i];
-				//범위 안이라면
-				if( canGO(gox, goy) ) {
-					//치즈랑 맞닿아있다면
-					if( map[gox][goy] == 1 ) {
-						area[gox][goy] += 1;
-					}
-					else if( map[gox][goy] == 0 &&  !visit[gox][goy]) {
-						visit[gox][goy] = true;
-						q.add(new Pos(gox,goy));
-					}
+	//말을 움직인다.
+	private static void moveHorse(int num) {
+		int x = horse[num].x;
+		int y = horse[num].y;
+		//이동 시킬 말의 위치
+		int gox = horse[num].x + dx[horse[num].dir];
+		int goy = horse[num].y + dy[horse[num].dir];
+		//실제 방향을 확인함
+		horse[num].dir = selectDir(gox,goy,horse[num].dir);
+		// 실제 갈 방향을 더해서 좌표계산을 한다.
+		gox = horse[num].x + dx[horse[num].dir];
+		goy = horse[num].y + dy[horse[num].dir];
+		
+		//범위 안인지부터 체크함 + 파란색인지 확인
+		if( canGo(gox, goy) && map[gox][goy] != 2 ) {
+			//다음 이동 칸이 흰,빨 중에 하나인 경우만 계산
+			if( map[gox][goy] == 0 ) {
+				Queue<Integer> q = new ArrayDeque<>();
+				//흰색 이라면 -> 딸린 식구 데리고 -- 현재 스택에서 자기 번호가 나올때까지 다른 말을 이동시킴 
+				while( (int)stack[x][y].peek() != num ) {
+					q.add((int)stack[x][y].pop());
 				}
-
+				// 자신 값 옮긴 후에 나머지 값도 옮긴다.
+				stack[gox][goy].add(stack[x][y].pop());
+				horse[num].x = gox;
+				horse[num].y = goy;
+				
+				while( !q.isEmpty() ) {
+					int n = q.peek();
+					horse[n].x = gox;
+					horse[n].y = goy;
+					stack[gox][goy].add(q.poll());
+				}
+				
+				
+			}else {
+				//빨간색이라면
+				Queue<Integer> q = new ArrayDeque<>();
+				// 딸린 식구 데리고 -- 현재 스택에서 자기 번호가 나올때까지 다른 말을 이동시킴 
+				while( (int)stack[x][y].peek() != num ) {
+					q.add((int)stack[x][y].pop());
+				}
+				// 자신 값 옮긴 후에 나머지 값도 옮긴다.
+				stack[gox][goy].add(stack[x][y].pop());
+				horse[num].x = gox;
+				horse[num].y = goy;
+				
+				while( !q.isEmpty() ) {
+					int n = q.peek();
+					horse[n].x = gox;
+					horse[n].y = goy;
+					stack[gox][goy].add(q.poll());
+				}
+				//뒤집는 연산이 필요해
+				int size = stack[gox][goy].size();
+				Stack<Integer> tem = new Stack<>();
+				for(int i = 0 ; i < size ; i ++) {
+					tem.add((int)stack[gox][goy].pop());
+				}
+				stack[gox][goy] = tem;
 			}
 
+			if(stack[gox][goy].size() >= 4 ) {
+				ck = true;
+				return;
+			}
+		}else {
+			//범위 밖 그냥 제자리에 있음 -> 제자리에 있으면 스택과 변화가 없겠지
+			
 		}
-
+		
+		
+		
+	}
+	//이동 위치가 범위를 벗어나거나 파란색일 경우 방향을 바꿔준다.
+	private static int selectDir(int gox, int goy, int dir) {
+		if( !canGo(gox,goy) || map[gox][goy] == 2 ) {
+			if( dir <= 1 ) {
+				//우좌 방향이라면 반대전환
+				return dir == 1 ? 0 : 1;
+			}else {
+				//상하방항이라면 반대 전환
+				return dir == 2 ? 3 : 2;
+			}
+		}else {
+			return dir;
+		}
 	}
 
 	//범위 안인지
-	private static boolean canGO(int gox, int goy) {
-		if( gox >= 0 && gox < h && goy >= 0 && goy < w) {
+	private static boolean canGo(int gox, int goy) {
+		if( gox >= 0 && gox < N && goy >= 0 && goy < N) {
 			return true;
 		}
 		return false;
 	}
 	//좌표 저장
 	static class Pos{
-		int x,y;
+		int x,y,dir;
 
-		public Pos(int x, int y) {
+		public Pos(int x, int y, int dir) {
 			this.x = x;
 			this.y = y;
+			this.dir = dir;
 		}
-
 	}
 
 }
-
-
-
 
 
