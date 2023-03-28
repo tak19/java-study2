@@ -1,21 +1,15 @@
 package needClean;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-<<<<<<< HEAD
-import java.util.Queue;
-=======
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
->>>>>>> branch 'master' of https://github.com/tak19/java-study2.git
 import java.util.StringTokenizer;
 
 public class test2 {
-
 	//우좌상하 순서
 	static int[] dx = {0,0,-1,1};
 	static int[] dy = {1,-1,0,0};
@@ -25,45 +19,9 @@ public class test2 {
 	static List<Integer> list; //겹쳐진 숫자를 판단할 리스트임
 	static Pos[] horse;
 	static Stack[][] stack;
-
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		StringTokenizer st = null;
-		StringBuilder sb = new StringBuilder();
-		while(true) {
-			st = new StringTokenizer(br.readLine());
-			m = Integer.parseInt(st.nextToken());
-			n = Integer.parseInt(st.nextToken());
-			
-			if( n== 0 && m == 0 ) {
-				break;
-			}
-			map = new int[n][m];
-			visit = new boolean[n][m];
-			for(int i = 0 ; i < n ; i++) {
-				st = new StringTokenizer(br.readLine());
-				for(int j = 0 ; j < m ; j++) {
-					map[i][j] = Integer.parseInt(st.nextToken());
-				}
-			}
-			int result = 0;
-			for(int i = 0 ; i < n ; i++) {
-				for(int j = 0 ; j < m ; j++) {
-					if( map[i][j] == 1 && !visit[i][j] ) {
-						result++;
-						visit[i][j] = true;
-						q = new ArrayDeque<>();
-						q.add(new Pos(i,j));
-						bfs();
-					}
-				}
-			}
-			sb.append(result).append("\n");
-			
-			
-=======
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
 		N = Integer.parseInt(st.nextToken()); // 체스판 크기
@@ -78,12 +36,8 @@ public class test2 {
 				map[i][j] = Integer.parseInt(st.nextToken());
 				stack[i][j] = new Stack<Integer>();
 			}
->>>>>>> branch 'master' of https://github.com/tak19/java-study2.git
 		}
 		
-<<<<<<< HEAD
-		System.out.println(sb);
-=======
 		
 		
 		//말의 정보를 입력 받는다! -> 행,열,이동방향 인덱스를 맞춰줌
@@ -101,49 +55,13 @@ public class test2 {
 		//구현 메소드
 		letSimul();
 		System.out.println(cnt >= 1000 ? -1 : cnt);
->>>>>>> branch 'master' of https://github.com/tak19/java-study2.git
 	}
-<<<<<<< HEAD
-
-	private static void bfs() {
-		
-		while( !q.isEmpty() ) {
-			Pos tem= q.poll();
-			for(int i = 0 ; i < 8 ;i++) {
-				int gox = tem.x + dx[i];
-				int goy = tem.y + dy[i];
-				if( canGo(gox,goy) ) {
-					if( map[gox][goy] == 1 && !visit[gox][goy] ) {
-						visit[gox][goy] = true;
-						q.add(new Pos(gox,goy));
-					}
-				}
-			}
-		}
-		
-		
-	}
-	private static boolean canGo(int gox, int goy) {
-		if( gox >= 0 && gox < n && goy >= 0 && goy < m ) {
-			return true;
-		}
-		return false;
-	}
-	static class Pos{
-		int x, y;
-
-		public Pos(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-		
-	}
-=======
 	
 	//게임시작
 	private static void letSimul() {
 		cnt = 0;
 		while( cnt < 1000 ) {
+
 			cnt++;
 			//말 전체 이동이 한턴임
 			for(int i = 0 ; i < K ; i++) {
@@ -215,7 +133,7 @@ public class test2 {
 				//뒤집는 연산이 필요해
 				int size = stack[gox][goy].size();
 				Stack<Integer> tem = new Stack<>();
-				for(int i = 0 ; i < size ; i ++) {
+				while( size --> 0 ) {
 					tem.add((int)stack[gox][goy].pop());
 				}
 				stack[gox][goy] = tem;
@@ -225,7 +143,7 @@ public class test2 {
 				ck = true;
 				return;
 			}
-		}else {
+		}else { 
 			//범위 밖 그냥 제자리에 있음 -> 제자리에 있으면 스택과 변화가 없겠지
 			
 		}
@@ -243,9 +161,8 @@ public class test2 {
 				//상하방항이라면 반대 전환
 				return dir == 2 ? 3 : 2;
 			}
-		}else {
-			return dir;
 		}
+		return dir;
 	}
 
 	//범위 안인지
@@ -266,7 +183,4 @@ public class test2 {
 		}
 	}
 
->>>>>>> branch 'master' of https://github.com/tak19/java-study2.git
 }
-
-
