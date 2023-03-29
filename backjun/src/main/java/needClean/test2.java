@@ -2,8 +2,6 @@ package needClean;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
@@ -36,9 +34,7 @@ public class test2 {
 				map[i][j] = Integer.parseInt(st.nextToken());
 				stack[i][j] = new Stack<Integer>();
 			}
-		}
-		
-		
+		}	
 		
 		//말의 정보를 입력 받는다! -> 행,열,이동방향 인덱스를 맞춰줌
 		horse = new Pos[K];
@@ -73,28 +69,28 @@ public class test2 {
 			if( ck ) {
 				break;
 			}
-			
 		}
 		
 	}
+
 	//말을 움직인다.
 	private static void moveHorse(int num) {
 		int x = horse[num].x;
 		int y = horse[num].y;
 		//이동 시킬 말의 위치
-		int gox = horse[num].x + dx[horse[num].dir];
-		int goy = horse[num].y + dy[horse[num].dir];
-		//실제 방향을 확인함
+		int gox = x + dx[horse[num].dir];
+		int goy = y + dy[horse[num].dir];
+		//실제 방향을 확인함 - 즉 밖으로 나가거나 파란색 땅이라면 방향을 반대로 전환함
 		horse[num].dir = selectDir(gox,goy,horse[num].dir);
-		// 실제 갈 방향을 더해서 좌표계산을 한다.
-		gox = horse[num].x + dx[horse[num].dir];
-		goy = horse[num].y + dy[horse[num].dir];
+		// 실제 갈 방향을 더해서 좌표계산을 한다. - 실제 이동
+		gox = x + dx[horse[num].dir];
+		goy = y + dy[horse[num].dir];
 		
-		//범위 안인지부터 체크함 + 파란색인지 확인
+		//범위 안인지부터 체크함 + 파란색인지 확인 => 해당 경우는 이동하지 않음
 		if( canGo(gox, goy) && map[gox][goy] != 2 ) {
 			//다음 이동 칸이 흰,빨 중에 하나인 경우만 계산
 			if( map[gox][goy] == 0 ) {
-				Queue<Integer> q = new ArrayDeque<>();
+				Stack<Integer> q = new Stack<>();
 				//흰색 이라면 -> 딸린 식구 데리고 -- 현재 스택에서 자기 번호가 나올때까지 다른 말을 이동시킴 
 				while( (int)stack[x][y].peek() != num ) {
 					q.add((int)stack[x][y].pop());
@@ -108,35 +104,27 @@ public class test2 {
 					int n = q.peek();
 					horse[n].x = gox;
 					horse[n].y = goy;
-					stack[gox][goy].add(q.poll());
+					stack[gox][goy].add(q.pop());
 				}
-				
-				
+
 			}else {
 				//빨간색이라면
-				Queue<Integer> q = new ArrayDeque<>();
+				Queue<Integer> tem = new ArrayDeque();
 				// 딸린 식구 데리고 -- 현재 스택에서 자기 번호가 나올때까지 다른 말을 이동시킴 
 				while( (int)stack[x][y].peek() != num ) {
-					q.add((int)stack[x][y].pop());
+					tem.add((int)stack[x][y].pop());
 				}
 				// 자신 값 옮긴 후에 나머지 값도 옮긴다.
-				stack[gox][goy].add(stack[x][y].pop());
+				tem.add((int)stack[x][y].pop());
 				horse[num].x = gox;
 				horse[num].y = goy;
 				
-				while( !q.isEmpty() ) {
-					int n = q.peek();
+				while( !tem.isEmpty() ) {
+					int n = tem.peek();
 					horse[n].x = gox;
 					horse[n].y = goy;
-					stack[gox][goy].add(q.poll());
+					stack[gox][goy].add(tem.poll());
 				}
-				//뒤집는 연산이 필요해
-				int size = stack[gox][goy].size();
-				Stack<Integer> tem = new Stack<>();
-				while( size --> 0 ) {
-					tem.add((int)stack[gox][goy].pop());
-				}
-				stack[gox][goy] = tem;
 			}
 
 			if(stack[gox][goy].size() >= 4 ) {
@@ -144,12 +132,13 @@ public class test2 {
 				return;
 			}
 		}else { 
-			//범위 밖 그냥 제자리에 있음 -> 제자리에 있으면 스택과 변화가 없겠지
-			
+			//이동하려는 칸이 범위 밖이거나 파란색이면 제자리에 있음
+			if(stack[x][y].size() >= 4 ) {
+				ck = true;
+				return;
+			}
 		}
-		
-		
-		
+	
 	}
 	//이동 위치가 범위를 벗어나거나 파란색일 경우 방향을 바꿔준다.
 	private static int selectDir(int gox, int goy, int dir) {
@@ -182,5 +171,4 @@ public class test2 {
 			this.dir = dir;
 		}
 	}
-
 }
