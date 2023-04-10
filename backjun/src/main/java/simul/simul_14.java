@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  * 다음 연산때 다른 열쇠를 찾은 적이 없다면 종료하고 값이 있다면 다음탐색도 계속 진행함
  * 대문자에서 65를 빼주면 0인덱스부터 시작.. 소문자는 97을 빼주면 0인덱스부터 시작
  */
-
+ 
 public class simul_14 {
 	//상하좌우
 	static int[] dx = {-1,1,0,0};
