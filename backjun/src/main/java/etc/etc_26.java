@@ -27,7 +27,7 @@ public class etc_26 {
 	private static boolean np(int[] arr) {
 		int n = arr.length-1;
 		int i = n;
-		while( i > 0 && arr[i] < arr[i-1] ) {
+		while( i > 0 && arr[i] < arr[i-1] ) { 
 			i--;
 		}
 		if( i == 0 ) {
