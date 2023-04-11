@@ -23,7 +23,7 @@ public class etc_26 {
 			sb.append("\n");
 		}while(np(input));
 		System.out.println(sb);
-	}
+	} 
 	private static boolean np(int[] arr) {
 		int n = arr.length-1;
 		int i = n;
