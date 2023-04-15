@@ -13,16 +13,14 @@ import java.util.StringTokenizer;
 public class test2 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		int T = Integer.parseInt(br.readLine());
-		int[] arr = new int[201];
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i = 0 ; i < T ; i++) {
-			int num = Integer.parseInt(st.nextToken());
-			arr[num+100]++;
+		int index = 0;
+		while( true ) {
+			System.out.println(index++);
+			String s = br.readLine();
+			if( s.equals("") ) {
+				break;
+			}
 		}
-		int goal = Integer.parseInt(br.readLine());
-		System.out.println(arr[goal+100]);
-		
+		System.out.println("탈출됨");
 	}
 }
