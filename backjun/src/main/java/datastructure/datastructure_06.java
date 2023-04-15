@@ -10,8 +10,8 @@ public class datastructure_06 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		TreeMap<String,Double> tMap = new TreeMap<>();
-
 		StringBuilder sb = new StringBuilder();
+		
 		int index = 0;
 		while( true ) {
 			String s = br.readLine();
