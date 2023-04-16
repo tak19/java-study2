@@ -1,26 +1,23 @@
 package needClean;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.Arrays;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
-/*
- * A,B 문 둘중에 하나씩 파악하면됨
- * 둘중 나가는 값이 큰값이 정답 가능성이 있는 값이다
- */
+
 public class test2 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int index = 0;
-		while( true ) {
-			System.out.println(index++);
-			String s = br.readLine();
-			if( s.equals("") ) {
-				break;
+		int[] arr = new int[31];
+		for(int i = 0 ; i < 28 ; i++) {
+			int tem = Integer.parseInt(br.readLine());
+			arr[tem]++;
+		}
+		for(int i = 1 ; i <= 30 ; i++) {
+			if( arr[i] == 0 ) {
+				System.out.println(i);
 			}
 		}
-		System.out.println("탈출됨");
 	}
 }
