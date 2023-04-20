@@ -14,7 +14,7 @@ public class datastructure_08 {
 		//길이만큼 반복
 		for(int i = 0 ; i < s.length(); i++) {
 			char c = s.charAt(i);
-			//닫는 괄호라면
+			//닫는 괄호라면 
 			if( c == ')' ) {
 				//레이저를 만남
 				if( s.charAt(i-1) == '(' ) {
