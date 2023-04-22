@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class BFS_DFS {
+public class BFS_DFS { 
 	static boolean[] visit1;
 	static boolean[] visit2;
 	static Queue<Integer> queue = new LinkedList<Integer>();
