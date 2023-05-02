@@ -2,7 +2,7 @@ package backjun;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+ 
 public class dfs_05_OMG {
 	static int[] dx = { 0, 0, 1, -1 };
 	static int[] dy = { 1, -1, 0, 0 };
