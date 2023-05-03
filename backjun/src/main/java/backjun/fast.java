@@ -14,6 +14,7 @@ public class fast {
 			String[] s = br.readLine().split(" ");
 			sb.append( Integer.parseInt(s[0]) + Integer.parseInt(s[1]) + "\n");
 		}
+		
 
 		System.out.println(sb);
 	}
