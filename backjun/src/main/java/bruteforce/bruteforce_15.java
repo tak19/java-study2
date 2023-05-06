@@ -31,6 +31,7 @@ public class bruteforce_15 {
 					result = start;
 					break;
 				}
+				 
 				
 				start++; //수 증가
 			}
