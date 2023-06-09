@@ -22,7 +22,7 @@ public class datastructure_14 {
 			extension = st.nextToken();
 			//해당 확장자의 값이 없다면 0을 반환 있다면 해당 value를 반환함
 			tMap.put( extension , tMap.getOrDefault(extension, 0) + 1 );
-		}
+		} 
 		StringBuilder sb = new StringBuilder();
 		//key값을 가지고 방문
 		Set<String> ketSet = tMap.keySet();
