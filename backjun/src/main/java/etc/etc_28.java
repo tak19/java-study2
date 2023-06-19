@@ -40,7 +40,5 @@ public class etc_28 {
 		}
 		System.out.println(result);
 		
-		
-		
 	}
 }
