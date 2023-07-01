@@ -15,25 +15,24 @@ import javax.crypto.CipherInputStream;
 public class greedy23 {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
+		String s = br.readLine();
 		
-		int result = 0;
-		//5로 나눠지면 5로 나누고 아니면 -2
-		while( n > 0 ) {
-
-			if( n % 5 == 0 ) {
-				result += n / 5;
-				n = 0;
-			}else {
-				result++;
-				n -= 2;
+		char c = 'a'; //이전 문자를 저장함
+		int one = 0;
+		int zero = 0;
+		for(int i = 0 ; i < s.length() ; i++) {
+			
+			if( s.charAt(i) != c ) {
+				c = s.charAt(i);
+				if( c == '1' ) {
+					zero++;
+				}
+				if( c == '0' ) {
+					one++;
+				}
 			}
 		}
-		//나누어 떨어지지않는 경우
-		if( n != 0 ) {
-			result = -1;
-		}
-		System.out.println(result);
-		
+		System.out.println(zero > one ? one : zero);
+
 	}
 }
