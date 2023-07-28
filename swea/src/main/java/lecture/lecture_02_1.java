@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class lecture02_1 {
+public class lecture_02_1 {
 	static boolean[] select;
 	static int N,M,L;
 	public static void main(String[] args) throws Exception {
