@@ -59,7 +59,6 @@ public class bfs_01 {
 		}
 		System.out.println(sb);
 	}
-
 	// 만약 방문한 노드중 하위 노드를 방문한다면 해당 노드는 방문할 필요없음.. ㅇㅈ?
 	private static void bfs(int num) {
 
