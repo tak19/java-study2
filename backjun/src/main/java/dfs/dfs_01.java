@@ -51,7 +51,5 @@ public class dfs_01 {
 				bfs(list[a].get(i));
 			}			
 		}
-
 	}
-
 }
