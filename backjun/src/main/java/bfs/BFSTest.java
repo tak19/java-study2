@@ -34,9 +34,7 @@ public class BFSTest {
 			list[finish].add(start);
 			
 		}
-		
-		StringBuilder sb = new StringBuilder();
-
+		StringBuilder sb = new StringBuilder();	
 		
 		//list 크기 만큼 반복... 만약 리스안에 값이 없다면 다음 리스트로 돌아감..
 		for(int i = 0 ; i < list.length ; i ++) {
@@ -90,33 +88,6 @@ public class BFSTest {
 			}else {
 				return;
 			}
-			
-
 		}
-
 	}
-
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
