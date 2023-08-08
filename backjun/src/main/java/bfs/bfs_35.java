@@ -118,7 +118,6 @@ public class bfs_35 {
 		}
 		return false;
 	}
-
 	static class Pos {
 		int x, y;
 
