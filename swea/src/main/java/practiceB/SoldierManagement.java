@@ -11,7 +11,6 @@ public class SoldierManagement {
 	private final static int CMD_UPDATE_SOLDIER		= 4;
 	private final static int CMD_UPDATE_TEAM		= 5;
 	private final static int CMD_BEST_SOLDIER		= 6;
-
 	private final static UserSolution usersolution = new UserSolution();
 
 	private static boolean run(BufferedReader br) throws Exception
