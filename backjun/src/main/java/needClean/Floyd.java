@@ -49,8 +49,6 @@ public class Floyd {
 				System.out.print(D[i][j] + "\t");
 			}
 			System.out.println();
-		}
-		
-			
+		}	
 	}
 }
