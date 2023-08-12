@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class KnapsackTest {
 	public static void main(String[] args) {
-		System.out.println( ('A'-65)  );
-		System.out.println( ('A'-90)  );
-		System.out.println( ('.'-90)  );
-		System.out.println( ('a'-90)  );
-		System.out.println('c' - 'C'  );
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
 		int W = sc.nextInt();
