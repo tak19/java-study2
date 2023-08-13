@@ -22,7 +22,7 @@ public class etc_02 {
 
 		//pec(0);
 		//dispec(0);
-		//com(0,0);
+		com(0,0);
 		//discom(0,0);
 		//System.out.println(cntCom(4,2));
 		
@@ -42,21 +42,21 @@ public class etc_02 {
 		
 		
 		
-		comOut = new int[5];
-		int last = 0;
-		while( last < 3 ) {
-			comOut[5-last-1] = 1;
-			last++;
-		}
-		do {
-			totalCnt++;
-			for(int i = 0 ; i < 5 ; i++) {
-				if( comOut[i] == 1 ) {
-					System.out.print(i + " ");
-				}
-			}
-			System.out.println();
-		} while (Np(comOut));
+//		comOut = new int[5];
+//		int last = 0;
+//		while( last < 3 ) {
+//			comOut[5-last-1] = 1;
+//			last++;
+//		}
+//		do {
+//			totalCnt++;
+//			for(int i = 0 ; i < 5 ; i++) {
+//				if( comOut[i] == 1 ) {
+//					System.out.print(i + " ");
+//				}
+//			}
+//			System.out.println();
+//		} while (Np(comOut));
 		
 		System.out.println(totalCnt);
 
