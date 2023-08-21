@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class MatKorCup_A {
+public class MatKorCup1_A {
 	
 	static int N;
 	public static void main(String[] args) throws Exception{
