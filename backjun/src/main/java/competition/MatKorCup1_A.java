@@ -18,7 +18,6 @@ public class MatKorCup1_A {
 			int ren = (int) (Math.random()*10) % 3; //0~2까지 난수 생성
 			index[i] = ren;
 			sb.append(card[ren]).append(" ");
-			
 		}
 		System.out.println(sb);
 		System.out.flush();
