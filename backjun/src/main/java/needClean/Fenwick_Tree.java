@@ -10,12 +10,10 @@ public class Fenwick_Tree {
 	private static int M;  // 변경이 일어나는 횟수
 	private static int K;  // 구간의 합을 구하는 횟수
 	private static long[] A;  // 수들을 저장하고 있는 배열
-	
 	// L[i]: 어떤 수 i를 이진수로 나타냈을 때, 마지막 1이 나타내는 값
 	// 예: L[3] = 1, L[10] = 2, L[12] = 4
 	// tree[i]는 A[i]부터 앞으로(좌측으로) L[i]개의 합이 저장되어 있음
 	private static long[] tree;
-	
 	private static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
@@ -87,7 +85,7 @@ public class Fenwick_Tree {
 		
 		return result;
 	}
-	
+
 	// start부터 end까지의 합(누적 합) 구하기
 	private static long intervalSum(int start, int end) {
 		return prefixSum(end) - prefixSum(start - 1);
