@@ -9,8 +9,6 @@ import java.util.StringTokenizer;
 
 public class PIMM_A {
 	static StringBuilder sb = new StringBuilder();
-	//static int K,N;
-	//static int[] arr;
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
