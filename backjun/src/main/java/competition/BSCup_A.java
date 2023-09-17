@@ -5,8 +5,7 @@ import java.util.StringTokenizer;
 
 public class BSCup_A {
 	static StringBuilder sb = new StringBuilder();
-	//static int N,M;
-	//static int[] arr;
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
