@@ -10,7 +10,6 @@ import java.util.StringTokenizer;
 public class PIMM_B {
 	static StringBuilder sb = new StringBuilder();
 	static int N,M;
-	//static int[] arr;
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
