@@ -34,6 +34,5 @@ public class PIMM_B {
 			}
 		}
 		System.out.println(result);
-		
 	}
 }
