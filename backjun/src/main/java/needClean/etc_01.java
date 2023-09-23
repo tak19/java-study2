@@ -33,13 +33,8 @@ private static StringBuilder sb = new StringBuilder();
 			
 		}
 		
-		
-		
-		
 		System.out.println(sb);
-		
-		
+
 	}
 	
 }
-
