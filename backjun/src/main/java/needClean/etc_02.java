@@ -37,11 +37,8 @@ public class etc_02 {
 //			System.out.println(Arrays.toString(input));
 //		} while (Np(input));
 		
-		
+
 		//NP 조합
-		
-		
-		
 //		comOut = new int[5];
 //		int last = 0;
 //		while( last < 3 ) {
