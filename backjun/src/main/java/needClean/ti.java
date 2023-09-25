@@ -53,7 +53,7 @@ public class ti {
 					maxC = nowC;
 				}
 				nowCSlide = slideC;
-				
+			
 			}
 		}
 		//System.out.println(nowRSlide);
