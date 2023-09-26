@@ -65,7 +65,7 @@ public class ti {
 		}
 		//System.out.println(maxR + " " + maxC);
 		System.out.println(maxR * maxC);
-		
+	
 	}
 }
     
