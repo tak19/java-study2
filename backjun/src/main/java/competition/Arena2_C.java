@@ -34,6 +34,5 @@ public class Arena2_C {
 			}
 		}
 		System.out.println(min);
-
 	}
 }
