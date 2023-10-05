@@ -47,6 +47,5 @@ public class datastructure_28 {
 			}
 		}
 		System.out.println(sb);
-		
 	}
 }
