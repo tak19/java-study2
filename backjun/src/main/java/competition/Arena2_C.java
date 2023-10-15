@@ -18,9 +18,9 @@ public class Arena2_C {
 		Arrays.sort(arr);
 		int maxIndex = n-1;
 		int min = Integer.MAX_VALUE;
-		
 		int minValue = arr[0];
 		int maxValue = arr[maxIndex];
+		
 		min = maxValue - minValue;
 		n += 2;
 		while(n --> 0) {
