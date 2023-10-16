@@ -15,6 +15,7 @@ public class Arena2_C {
 		for(int i = 0 ; i < n ; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		
 		Arrays.sort(arr);
 		int maxIndex = n-1;
 		int min = Integer.MAX_VALUE;
