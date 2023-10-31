@@ -8,13 +8,10 @@ import java.util.StringTokenizer;
 public class bronze_12 {
     public static void main(String[] args) throws Exception {
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int sum = 0;
-        while (true) {
-            int cur = Integer.parseInt(br.readLine());
-            if (cur == -1) break;
-            sum+=cur;
-        }
-        System.out.println(sum);
-	}
 
+        int n = Integer.parseInt(br.readLine()); //입력 크기 입력받음 => 이것이 수행 홧수
+        br.close();
+        System.out.println(n);
+        System.out.println(1);
+    }
 }
