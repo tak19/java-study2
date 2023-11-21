@@ -1,10 +1,9 @@
 package basic;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class codingTest_01 {
@@ -16,7 +15,7 @@ public class codingTest_01 {
 		/*
 		 * 1. 입력파일 읽어 들이기
 		 */
-		//System.setIn(new FileInputStream("res/17478_input.txt"));
+		//System.setIn(new FileInputStream("res/Sample_input.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		int Test = Integer.parseInt(br.readLine());
@@ -35,7 +34,7 @@ public class codingTest_01 {
 				studentArr[i] = Integer.parseInt(st.nextToken());
 			}
 			
-			//내림 차순 정렬
+			//정렬
 			Arrays.sort(studentArr);
 			//System.out.println(Arrays.toString(studentArr));
 			result = 0;
@@ -49,7 +48,7 @@ public class codingTest_01 {
 		}
 		System.out.println(sb);
 	}
-	//오른쪽으로 갈 경우 나오는 수 계산
+	//오른쪽으로 갈 경우 나오는 수 계산1
 	private static int rigthCount(int index) {
 		int cnt = 0;
 		for(int i = index + 1 ; i < N ; i++ ) {
@@ -61,17 +60,4 @@ public class codingTest_01 {
 		}
 		return cnt;
 	}
-/*	//왼쪽으로 갈 경우 계산
-	private static int leftCount(int index) {
-		int cnt = 0;
-		for(int i = index - 1 ; i >= 0 ; i-- ) {
-			if( studentArr[index] - studentArr[i] <= pointGap ) {
-				cnt++;
-			}else {
-				break;
-			}
-		}
-		return cnt;
-	}*/
-	
 }
