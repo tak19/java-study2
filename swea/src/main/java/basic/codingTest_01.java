@@ -33,7 +33,6 @@ public class codingTest_01 {
 			for(int i = 0 ; i < N ; i++) {
 				studentArr[i] = Integer.parseInt(st.nextToken());
 			}
-			
 			//정렬
 			Arrays.sort(studentArr);
 			//System.out.println(Arrays.toString(studentArr));
