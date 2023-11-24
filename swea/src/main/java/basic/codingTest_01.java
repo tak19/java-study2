@@ -35,11 +35,10 @@ public class codingTest_01 {
 			}
 			//정렬
 			Arrays.sort(studentArr);
-			//System.out.println(Arrays.toString(studentArr));
 			result = 0;
+			
 			//완전 탐색 시작
 			for(int i = 0 ; i < N ; i++) {
-				//System.out.println(i+"번째 실행 테케임=>" + "왼쪽으로: " + leftCount(i) + " 오른쪽으로: " + rigthCount(i));
 				int sumStudent = rigthCount(i) + 1;
 				result = Math.max(result, sumStudent);
 			}
