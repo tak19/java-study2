@@ -46,7 +46,7 @@ public class codingTest_01 {
 		}
 		System.out.println(sb);
 	}
-	//오른쪽으로 갈 경우 나오는 수 계산1
+	//오른쪽으로 갈 경우 나오는 수 계산
 	private static int rigthCount(int index) {
 		int cnt = 0;
 		for(int i = index + 1 ; i < N ; i++ ) {
