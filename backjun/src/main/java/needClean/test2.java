@@ -4,9 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class test2 {
@@ -18,6 +16,10 @@ public class test2 {
 		
 		String s = br.readLine();
 		Integer[] arr = new Integer[s.length()];
+		 
+		int[][] testArr = new int[2][2];
+		int row = testArr.length;
+		int col = testArr[0].length;
 		for(int i = 0 ; i < s.length() ; i++) {
 			arr[i] = s.charAt(i) - '0';
 		}
