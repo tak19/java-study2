@@ -13,7 +13,7 @@ public class test2 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		//st = new StringTokenizer(br.readLine());
-		 
+		  
 		String s = br.readLine();
 		Integer[] arr = new Integer[s.length()];
 		 
