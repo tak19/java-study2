@@ -15,7 +15,7 @@ public class test2 {
 		//st = new StringTokenizer(br.readLine());
 		  
 		String s = br.readLine();
-		Integer[] arr = new Integer[s.length()];
+		Integer[] arr = new  Integer[s.length()];
 		 
 		int[][] testArr = new int[2][2];
 		int row = testArr.length;
