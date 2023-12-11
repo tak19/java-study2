@@ -23,7 +23,7 @@ public class test2 {
 		for(int i = 0 ; i < s.length() ; i++) {
 			arr[i] = s.charAt(i) - '0';
 		}
-		Arrays.sort(arr,Collections.reverseOrder());
+		Arrays.sort(arr,Collections.reverseOrder()); 
 		for(Integer i : arr) {
 			sb.append(i);
 		}  
