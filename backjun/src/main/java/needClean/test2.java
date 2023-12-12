@@ -27,6 +27,6 @@ public class test2 {
 		for(Integer i : arr) {
 			sb.append(i);
 		}  
-		System.out.println(sb);
+		System.out.println(sb); 
 	}
 } 
