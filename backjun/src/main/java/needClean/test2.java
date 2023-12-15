@@ -11,7 +11,7 @@ public class test2 {
 	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = null; 
+		StringTokenizer st = null;
 		//st = new StringTokenizer(br.readLine()); 
 		  
 		String s = br.readLine();
