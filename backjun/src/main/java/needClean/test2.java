@@ -20,7 +20,7 @@ public class test2 {
 		int[][] testArr = new int[2][2];
 		int row = testArr.length;
 		int col = testArr[0].length;
-		for(int i = 0 ; i < s.length() ; i++) {
+		for(int i = 0 ; i < s.length() ; i++) { 
 			arr[i] = s.charAt(i) - '0';
 		}
 		Arrays.sort(arr,Collections.reverseOrder()); 
