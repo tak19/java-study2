@@ -2,6 +2,7 @@ package samsung;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class samsung_01 {
@@ -22,13 +23,71 @@ public class samsung_01 {
 			}
 		}
 		result = Integer.MAX_VALUE;
-		//nC(2/n) 구함
+		
 		selectOne = new int[N];
 		selectTwo = new int[N];
-		combi(1,0);
+		
+		// 1.일반적인 조합 계산
+		//nC(2/n) 구함
+		//combi(1,0);
+		
+		
+		// 2.NP를 이용한 빠른 계산
+		
+		//초기 배열 만들기
+		int[] input = new int[N];
+		int last = 0;
+		while(last < N/2) {
+			input[N-last-1] = 1;
+			last++;
+		}
+		
+		//NP 실행
+		do {
+			int index = 0;
+			for(int i = 0 ; i < N ; i++) {
+				if( input[i] == 1 ) {
+					selectOne[index++] = i+1;
+				}
+			}
+			anotherArr();
+			//System.out.println(Arrays.toString(selectOne));
+			int a = calPoint(selectOne);
+			int b = calPoint(selectTwo);
+			result = Math.min(result, Math.abs(a-b));
+			
+		}while( np(input) );
 		
 		System.out.println(result);
 		
+	}
+	//NP
+	private static boolean np(int[] input) {
+		
+		int i = input.length-1;
+		while( i > 0 && input[i] <= input[i-1] ) {
+			i--;
+		}
+		if(i==0) {
+			return false;
+		}
+		
+		int j = input.length-1;
+		while( input[i-1] >= input[j] ) {
+			j--;
+		}
+		swap(input,i-1,j);
+		int k = input.length-1;
+		while(i < k) {
+			swap(input,i++,k--);
+		}
+		return true;
+	}
+	//자리 교환
+	private static void swap(int[] input, int i, int j) {
+		int tem = input[i];
+		input[i] = input[j];
+		input[j] = tem;
 	}
 	//조합 계산
 	private static void combi(int start, int cnt) {
@@ -67,6 +126,7 @@ public class samsung_01 {
 			}
 		}
 	}
+
 	//숫자가 있는지 체크
 	private static boolean ckNum(int num) {
 		for(int i = 0 ; i < N ; i++) {
