@@ -24,7 +24,7 @@ public class test2 {
 			arr[i] = s.charAt(i) - '0';
 		}
 		Arrays.sort(arr,Collections.reverseOrder()); 
-		for(Integer i : arr) { 
+		for(Integer i : arr) {  
 			sb.append(i);
 		}   
 		System.out.println(sb);  
