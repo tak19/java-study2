@@ -43,32 +43,26 @@ public class samsung_03 {
 			// 속도s와 방향 d
 			int s = Integer.parseInt(st.nextToken());
 			int d = Integer.parseInt(st.nextToken());
-			// System.out.println("r: " + r + " c: " + c);
 			// 배열에 파이어볼 저장함
 			arr[r][c].offer(new Pos(r, c, m, s, d));
 		}
 
 		// 파이어볼 전개!!
 		for (int T = 0; T < K; T++) {
-			//System.out.println(T+1 + " 번쨰 진행\n");
-			//printQueue(arr);
 			// 임시 파이어볼 배열 생성
 			temArr = initQueue();
 			// 파이어볼 이동 - 비어있지 않으면 해당 파이어볼이 있는것임
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
 					if (!arr[i][j].isEmpty()) {
-						//System.out.println("i: " + i + " j: " + j + " 에서 발견!!");
 						moveFireBall(i, j);
 					}
 				}
 			}
 			copyArr();
-
 			// 다시 초기화
 			temArr = initQueue();
-			//System.out.println("쪼개기기전");
-			//printQueue(arr);
+
 			// 파이어볼 쪼개짐!
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
@@ -77,14 +71,10 @@ public class samsung_03 {
 					}
 				}
 			}
-			zeroRemove();
-
 			// 옮겨담기
 			copyArr();
 			
 		}
-		//System.out.println("최종 Queue 배열");
-		//printQueue(arr);
 		int result = 0;
 		for (int i = 1; i <= N; i++) {
 			for (int j = 1; j <= N; j++) {
@@ -96,33 +86,6 @@ public class samsung_03 {
 		System.out.println(result);
 	}
 
-	private static void zeroRemove() {
-		/*for (int i = 0; i <= N; i++) {
-			for (int j = 0; j <= N; j++) {
-				int cnt = 0;
-				if( !temArr[i][j].isEmpty() ) {
-					for( Pos p : temArr[i][j] ) {
-						if( p.m == 0 ) {
-							temArr[i][j].poll(cnt);
-						}
-					}
-				}
-			}
-		}*/
-	}
-
-	private static void printQueue(Queue<Pos>[][] arr2) {
-		for (int i = 1; i <= N; i++) {
-			for (int j = 1; j <= N; j++) {
-				if (!arr2[i][j].isEmpty()) {
-					for (Pos p : arr2[i][j]) {
-						System.out.println("x: " + p.x + " y: " + p.y + " m: " + p.m + "   " + "s: " + p.s + " d: " + p.d);
-					}
-				}
-			}
-		}
-	}
-
 	// 가짜판을 진짜판으로~
 	private static void copyArr() {
 		for (int i = 0; i <= N; i++) {
@@ -130,7 +93,6 @@ public class samsung_03 {
 				while(!temArr[i][j].isEmpty()) {
 					arr[i][j].offer(temArr[i][j].poll());
 				}
-				//arr[i][j] = temArr[i][j];
 			}
 		}
 	}
@@ -159,7 +121,7 @@ public class samsung_03 {
 			sumS += p.s;
 			list.add(p.d);
 		}
-		//System.out.println("전체 질량: " + sumM);
+
 		// 질량과 속도 정하기
 		sumM = sumM / 5;
 		sumS = sumS / size;
@@ -176,35 +138,13 @@ public class samsung_03 {
 		// 4방향으로 쪼개기
 		if (sumD) {
 			for (int i = 0; i <= 7; i += 2) {
-				//moveFire(r, c, sumM, sumS, i);
 				temArr[r][c].offer(new Pos(r, c, sumM, sumS, i));
-				
 			}
 		} else {
 			for (int i = 1; i <= 7; i += 2) {
-				//moveFire(r, c, sumM, sumS, i);
 				temArr[r][c].offer(new Pos(r, c, sumM, sumS, i));
 			}
 		}
-
-	}
-
-	private static void moveFire(int r, int c, int sumM, int sumS, int i) {
-		// 파이어볼 이동 크기
-/*		int x = (r + dx[i]);
-		int y = (c + dy[i]);
-		// 이동 후 좌표
-		if (x >= 0) {
-			x = calPlus(x);
-		} else {
-			x = calMinus(x);
-		}
-		if (y >= 0) {
-			y = calPlus(y);
-		} else {
-			y = calMinus(y);
-		}*/
-		temArr[r][c].offer(new Pos(r, c, sumM, sumS, i));
 	}
 
 	// 모두 다 홀수 인지 판단
@@ -247,7 +187,6 @@ public class samsung_03 {
 			} else {
 				y = calMinus(y);
 			}
-			//System.out.println("이동 후 좌표 -> X:  " + x + " Y: " + y);
 			temArr[x][y].offer(new Pos(x, y, pos.m, pos.s, pos.d));
 		}
 	}
@@ -282,6 +221,5 @@ public class samsung_03 {
 			this.s = s;
 			this.d = d;
 		}
-
 	}
 }
