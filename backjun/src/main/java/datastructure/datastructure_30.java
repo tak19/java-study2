@@ -50,7 +50,7 @@ public class datastructure_30 {
 		while (!stL.empty()) {
 			stR.push(stL.pop());
 		}
-
+		//정답 스택 StringBuilder에 담기
 		while (!stR.empty()) {
 			sb.append(stR.pop());
 		}
